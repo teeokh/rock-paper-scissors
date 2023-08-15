@@ -10,6 +10,10 @@
 
     function playRound(playerSelection, computerSelection){
 
+        let win = "You Win! ";
+        let lose = "You Lose! ";
+        let draw = "Draw!";
+
         let validChoices = ["rock", "paper", "scissors"];
 
         if (!validChoices.includes(playerSelection)){
@@ -18,43 +22,64 @@
 
         if (playerSelection == "rock"){
             if (computerSelection == "paper"){
-                return "You Lose! Paper beats Rock"
+                return lose + "Paper beats Rock"
             } else if (computerSelection == "scissors"){
-                return "You Win! Rock beats Scissors"
+                return win + "Rock beats Scissors"
             } else {
-                return "Draw!"
+                return draw
             }
         }
 
         if (playerSelection == "paper"){
             if (computerSelection == "scissors"){
-                return "You Lose! Scissors beats Paper"
+                return lose + "Scissors beats Paper"
             } else if (computerSelection == "rock"){
-                return "You Win! Paper beats Rock"
+                return win + "Paper beats Rock"
             } else {
-                return "Draw!"
+                return draw
             }
         }
 
         if (playerSelection == "scissors"){
             if (computerSelection == "paper"){
-                return "You Win! Scissors beats Paper"
+                return win + "Scissors beats Paper"
             } else if (computerSelection == "rock"){
-                return "You Lose! Rock beats Scissors"
+                return lose + "Rock beats Scissors"
             } else {
-                return "Draw!"
+                return draw
             }
         }
 }
 
 
 function game(){
+
+    let p = 0;
+    let c = 0;
+
     for (i = 0; i < 5; i++){
 
         let playerSelection = prompt("Enter rock, paper or scissors").toLowerCase();
         let computerSelection = getComputerChoice();
 
-        console.log(playRound(playerSelection, computerSelection));
+        let result = playRound(playerSelection, computerSelection);
+        console.log(result);
+        
+        if(result.includes("Win")){
+            p++;
+        }
+
+        if(result.includes("Lose")){
+            c++;
+        }
+    }
+
+    if(c > p){
+        console.log ("Computer wins!")
+    } else if (c < p){
+        console.log ("You win!")
+    } else {
+        console.log ("Draw!")
     }
 }
 
@@ -69,6 +94,6 @@ Iterates for 5 rounds
 For each round determine the winner
     Will involve .includes for the return string to see if player or computer wins
 Tally points for player, tally points for computer
-First to reach 3 points = winner 
+Whoevers points is higher = winner
 
 */ 
