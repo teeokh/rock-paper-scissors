@@ -8,6 +8,9 @@
         return options[index]; // print the corresponding index of the words available in the array 
 }
 
+        let c = 0;
+        let p = 0;
+
     function playRound(playerSelection, computerSelection){
 
         let win = "You Win! ";
@@ -22,8 +25,10 @@
 
         if (playerSelection == "rock"){
             if (computerSelection == "paper"){
+                c++;
                 return lose + "Paper beats Rock"
             } else if (computerSelection == "scissors"){
+                p++;
                 return win + "Rock beats Scissors"
             } else {
                 return draw
@@ -32,8 +37,10 @@
 
         if (playerSelection == "paper"){
             if (computerSelection == "scissors"){
+                c++;
                 return lose + "Scissors beats Paper"
             } else if (computerSelection == "rock"){
+                p++;
                 return win + "Paper beats Rock"
             } else {
                 return draw
@@ -42,8 +49,10 @@
 
         if (playerSelection == "scissors"){
             if (computerSelection == "paper"){
+                p++;
                 return win + "Scissors beats Paper"
             } else if (computerSelection == "rock"){
+                c++;
                 return lose + "Rock beats Scissors"
             } else {
                 return draw
@@ -54,9 +63,6 @@
 
 function game(){
 
-    let p = 0;
-    let c = 0;
-
     for (i = 0; i < 5; i++){
 
         let playerSelection = prompt("Enter rock, paper or scissors").toLowerCase();
@@ -65,13 +71,6 @@ function game(){
         let result = playRound(playerSelection, computerSelection);
         console.log(result);
         
-        if(result.includes("Win")){
-            p++;
-        }
-
-        if(result.includes("Lose")){
-            c++;
-        }
     }
 
     if(c > p){
