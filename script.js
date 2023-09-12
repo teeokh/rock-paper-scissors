@@ -1,5 +1,3 @@
-
-
    function getComputerChoice(){
         const options = ["rock", "paper", "scissors"]; // create array of these options
 
@@ -60,6 +58,21 @@
         }
 }
 
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const playerChoice = button.id;
+        const computerChoice = getComputerChoice();
+        const result = playRound(playerChoice, computerChoice);
+        console.log(result);
+    })
+})
+
+
+
+
+/* 
 
 function game(){
 
@@ -84,7 +97,7 @@ function game(){
 
 game();
 
-
+*/
 
 
 /* 
