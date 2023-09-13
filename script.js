@@ -6,14 +6,13 @@
         return options[index]; // print the corresponding index of the words available in the array 
 }
 
-        let c = 0;
-        let p = 0;
-
     function playRound(playerSelection, computerSelection){
 
         let win = "You Win! ";
         let lose = "You Lose! ";
         let draw = "Draw!";
+
+        
 
         let validChoices = ["rock", "paper", "scissors"];
 
@@ -58,46 +57,69 @@
         }
 }
 
-const buttons = document.querySelectorAll("button");
 
-buttons.forEach((button) => {
+
+// let displayResult = document.getElementById("result"); // Makes reference to 'result' id
+
+console.log("Event listeners are being added to buttons.");
+
+
+// Creating buttons that play the round:
+
+const buttons = document.querySelectorAll("button"); // Makes nodelist 'buttons' including each button
+const resultDiv = document.getElementById("result");
+
+let p = 0;
+let c = 0;
+
+    buttons.forEach((button) => { // Loops through buttons nodelist
     button.addEventListener("click", () => {
-        const playerChoice = button.id;
-        const computerChoice = getComputerChoice();
-        const result = playRound(playerChoice, computerChoice);
-        console.log(result);
-    })
-})
 
+        if(p + c >= 5){ // Once total score reaches 5, button stops working
+            return;
+        }
 
-
-
-/* 
-
-function game(){
-
-    for (i = 0; i < 5; i++){
-
-        let playerSelection = prompt("Enter rock, paper or scissors").toLowerCase();
+        let playerSelection = button.id;
         let computerSelection = getComputerChoice();
-
         let result = playRound(playerSelection, computerSelection);
-        console.log(result);
         
-    }
+        if(result.includes("You win! ")){
+            p++;
+        }
 
-    if(c > p){
-        console.log ("Computer wins!")
-    } else if (c < p){
-        console.log ("You win!")
-    } else {
-        console.log ("Draw!")
-    }
-}
+        if(result.includes("You lose! ")){
+            c++;
+        }
 
-game();
+        playerScore.textContent = p;
+        computerScore.textContent = c;
 
-*/
+
+        if(p + c >= 5){ // Once total score reaches 5, the result is displayed 
+
+            let displayResult;
+
+            if(c > p){
+                displayResult = "Computer wins!";
+            } else if (c < p){
+                displayResult = "You win!";
+            } else {
+                displayResult = "Draw!";
+            }
+
+            resultDiv.textContent = displayResult;
+        }
+        })
+
+    })
+
+
+
+
+
+// Creating score counter (which displays p and c scores as rounds are played)
+
+// game();
 
 
 /* 
